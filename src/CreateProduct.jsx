@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Axios from "axios"
+import { Navigate } from 'react-router-dom'
 
 function CreateProduct() {
 
@@ -27,48 +28,57 @@ function CreateProduct() {
     }
 
     let submitHandler = (event)=>{
-        Axios.post("http://127.0.0.1:5000/api/products",Product)
-        .then((resp)=>{
+        event.preventDefault()
+
+        Axios.post('http://127.0.0.1:8000/api/products/',Product)
+
+        .then((response)=>{
+            console.log('product created successfully',response)
             setcreated(true)
         })
         .catch(()=>{})
     }
-
+    console.log('iscreated',iscreated)
   return (
     <div>
         <pre>{JSON.stringify(Product)}</pre>
         <div className="container mt-5">
+            <pre>value:{JSON.stringify(iscreated)}</pre>
             <div className="row">
-                <div className="col-md-4">
-                    <div className="card">
-                        <div className="card-header">
-                            <h2>Create New product</h2>
-                        </div>
-                        <div className="card-body">
-                            <form action="" onSubmit={submitHandler}>
-                        <div className="form-group">
-                            <input type="text" placeholder='ProductName' className='form-control' name='name' onChange={updadteHandler}/>
-                        </div>
-                        <div className="form-group">
-                            <input type="file" placeholder='Choose file' className='form-control' name='image' onInput={imageHandler}/>
-                        </div>
-                        <div className="form-group">
-                            <input type="number" placeholder='price' className='form-control' name='price' onChange={updadteHandler}/>
-                        </div>
-                        <div className="form-group">
-                            <input type="number" placeholder='Qty' className='form-control' name='qty' onChange={updadteHandler}/>
-                        </div>
-                        <div className="form-group">
-                            <input type="text" className='form-control' name='info' onChange={updadteHandler}/>
-                        </div>
-                        <div className="form-group">
-                            <input type="submit" value="Create Product" className='btn btn-primary form-control' />
-                        </div>
-                    </form>
+                {
+                    iscreated?<><Navigate to='/Product'/></>:<>
+                    
+                    <div className="col-md-4">
+                        <div className="card">
+                            <div className="card-header">
+                                <h2>Create New product</h2>
+                            </div>
+                            <div className="card-body">
+                                <form action="" onSubmit={submitHandler}>
+                                    <div className="form-group">
+                                        <input type="text" placeholder='ProductName' className='form-control' name='name' onChange={updadteHandler}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="file" placeholder='Choose file' className='form-control' name='image' onInput={imageHandler}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="number" placeholder='price' className='form-control' name='price' onChange={updadteHandler}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="number" placeholder='Qty' className='form-control' name='qty' onChange={updadteHandler}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="text" className='form-control' name='info' onChange={updadteHandler}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="submit" value="Create Product" className='btn btn-primary form-control' />
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    
-                </div>
+                    </>
+                }
             </div>
         </div>
     </div>
