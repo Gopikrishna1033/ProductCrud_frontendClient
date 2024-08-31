@@ -4,6 +4,7 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import Home from './Home'
 import Product from './Product'
 import Admin from './Admin'
+import CreateProduct from './CreateProduct'
 function Navbar() {
   return (
     <div>
@@ -22,6 +23,7 @@ function Navbar() {
               <Route path='index' element={<Home/>}></Route>
               <Route path='Product' element={<Product/>}></Route>
               <Route path='Admin' element={<Admin/>}></Route>
+              <Route path='createproduct' element={<CreateProduct/>}></Route>
             </Routes>
         </Router>
     </div>

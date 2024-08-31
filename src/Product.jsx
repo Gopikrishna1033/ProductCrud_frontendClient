@@ -1,8 +1,25 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import Axios from "axios"
 function Product() {
+  let [products,setproducts]=useState([])
+
+  useEffect(()=>{
+    Axios.get("http://127.0.0.1:5000/api/products")
+    .then((resp)=>{
+      setproducts(resp.data)
+    })
+    .catch(()=>{})
+  },[])
+
   return (
-    <div>Product</div>
+    <div>
+      
+      <div className="container">
+        <div className="row">
+
+        </div>
+      </div>
+    </div>
   )
 }
 
