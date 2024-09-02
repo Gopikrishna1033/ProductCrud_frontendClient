@@ -5,6 +5,7 @@ import Home from './Home'
 import Product from './Product'
 import Admin from './Admin'
 import CreateProduct from './CreateProduct'
+import UpdateProduct from './UpdateProduct'
 function Navbar() {
   return (
     <div>
@@ -24,6 +25,7 @@ function Navbar() {
               <Route path='Product' element={<Product/>}></Route>
               <Route path='Admin' element={<Admin/>}></Route>
               <Route path='createproduct' element={<CreateProduct/>}></Route>
+              <Route path='/updateProduct/:id' element={<UpdateProduct/>}></Route>
             </Routes>
         </Router>
     </div>

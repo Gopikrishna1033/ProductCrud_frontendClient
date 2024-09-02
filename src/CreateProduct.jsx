@@ -28,10 +28,10 @@ function CreateProduct() {
     }
 
     let submitHandler = (event)=>{
+        console.log("Test Case 123")
         event.preventDefault()
-
-        Axios.post('http://127.0.0.1:8000/api/products/',Product)
-
+        //console.log(Product)
+        Axios.post('http://127.0.0.1:5000/api/products',Product)
         .then((response)=>{
             console.log('product created successfully',response)
             setcreated(true)
@@ -46,7 +46,7 @@ function CreateProduct() {
             <pre>value:{JSON.stringify(iscreated)}</pre>
             <div className="row">
                 {
-                    iscreated?<><Navigate to='/Product'/></>:<>
+                    iscreated? <> <Navigate to='/Product'/> </> :<>
                     
                     <div className="col-md-4">
                         <div className="card">
